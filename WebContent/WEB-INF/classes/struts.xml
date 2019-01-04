@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="messages" />
+	<constant name="struts.action.excludePattern" value="/ExameWs*"/>
+	
+
+	<package name="exame" extends="struts-default">
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		<action name="listagem" class="br.com.inaciojr9.exames.action.ListagemAction"  method="execute">
+			<result name="success">/listagem.jsp</result>
+		</action>
+		<action name="edicao"	class="br.com.inaciojr9.exames.action.EdicaoAction"	method="execute">
+			<result name="success">/edicao.jsp</result>
+		</action>
+		<action name="persistencia"	class="br.com.inaciojr9.exames.action.PersistenciaAction" method="execute">
+			<result name="success" type="chain">listagem</result>
+			<result name="input">/edicao.jsp</result>
+		</action>
+		<action name="delete"	class="br.com.inaciojr9.exames.action.DeleteAction" method="execute">
+			<result name="success" type="chain">listagem</result>
+		</action>
+		<action name="pesquisa"	class="br.com.inaciojr9.exames.action.PesquisaAction"	method="execute">
+			<result name="success">/listagem.jsp</result>
+		</action>
+	</package>
+	
+	
+</struts>
